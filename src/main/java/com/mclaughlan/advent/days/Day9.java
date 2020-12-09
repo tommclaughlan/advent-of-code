@@ -39,23 +39,20 @@ public class Day9 extends Solution {
         var list = inputReader.streamLines()
             .map(s -> Long.parseLong(s)).collect(Collectors.toList());
 
-        long top = -1;
-        long bottom = -1;
-        for (var i = 0; i < list.size() - 1 && top == -1 && bottom == -1; i++) {
-            for (var j = i + 1; j < list.size(); j++) {
-                var sublist = list.subList(i, j + 1);
-                var sum = sublist.stream().reduce(0L, (a,b) -> a + b).longValue();
-                if (sum == first) {
-                    top = sublist.stream().max(Comparator.naturalOrder()).get();
-                    bottom = sublist.stream().min(Comparator.naturalOrder()).get();
-                    break;
-                }
-                if (sum > first) {
-                    break;
-                }
+        var i = 0;
+        var j = 2;
+        var sublist = list.subList(i, j);
+        var sum = sublist.stream().reduce(0L, (a, b) -> a + b).longValue();
+        while (sum != first) {
+            if (sum < first) {
+                j++;
+            } else if (sum > first) {
+                i++;
             }
+            sublist = list.subList(i, j);
+            sum = sublist.stream().reduce(0L, (a, b) -> a + b).longValue();
         }
 
-        return top + bottom;
+        return sublist.stream().max(Comparator.naturalOrder()).get() + sublist.stream().min(Comparator.naturalOrder()).get();
     }
 }
