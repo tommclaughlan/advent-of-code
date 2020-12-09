@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        Solution solution = new Day8();
+        Solution solution = new Day9();
         solution.run();
     }
 }
