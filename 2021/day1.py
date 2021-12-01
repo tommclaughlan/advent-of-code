@@ -1,11 +1,11 @@
-from util.io import get_lines
+from util.io import get_lines, get_input
 
 
 def part1():
     previous = -1
     count = 0
 
-    for depth in get_lines('day1', int):
+    for depth in get_lines(1, int):
         if depth > previous > 0:
             count += 1
 
@@ -20,7 +20,7 @@ def part2():
     prev3 = -1
     count = 0
 
-    for depth in get_lines('day1', int):
+    for depth in get_lines(1, int):
         prev_window = prev3 + prev2 + prev
         current_window = prev2 + prev + depth
 
