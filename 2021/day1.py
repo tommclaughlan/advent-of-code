@@ -6,11 +6,7 @@ def part1():
     count = 0
 
     for depth in get_lines('day1', int):
-        if previous < 0:
-            previous = depth
-            continue
-
-        if depth > previous:
+        if depth > previous > 0:
             count += 1
 
         previous = depth
@@ -25,16 +21,10 @@ def part2():
     count = 0
 
     for depth in get_lines('day1', int):
-        if prev3 < 0:
-            prev3 = prev2
-            prev2 = prev
-            prev = depth
-            continue
-
         prev_window = prev3 + prev2 + prev
         current_window = prev2 + prev + depth
 
-        if current_window > prev_window:
+        if current_window > prev_window and prev3 > 0:
             count += 1
 
         prev3 = prev2
