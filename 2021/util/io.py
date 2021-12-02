@@ -1,22 +1,13 @@
 import urllib.request
 
 
-def get_lines(day, cast=lambda b: b.decode('UTF-8')):
-    for line in get_input(day):
-        yield cast(line)
-
-
-def get_filename(day):
-    return f'data/{day}'
-
-
 def get_input(day):
     cookie = read_cookie()
     url = f'https://adventofcode.com/2021/day/{day}/input'
     request = urllib.request.Request(url)
     request.add_header('Cookie', f'session={cookie}')
     with urllib.request.urlopen(request) as response:
-        return response.readlines()
+        return [line.decode('utf-8') for line in response.readlines()]
 
 
 def read_cookie():

@@ -1,45 +1,42 @@
-from util.io import get_lines
+from util.runner import Runner
 
 
-def part1():
-    h = 0
-    d = 0
+class Day(Runner):
+    def part1(self):
+        h = 0
+        d = 0
 
-    for line in get_lines(2):
-        parts = line.split(' ')
-        cmd = parts[0]
-        amount = int(parts[1])
+        for parts in self.input:
+            cmd = parts[0]
+            amount = int(parts[1])
 
-        if cmd == 'forward':
-            h += amount
-        elif cmd == 'down':
-            d += amount
-        elif cmd == 'up':
-            d -= amount
+            if cmd == 'forward':
+                h += amount
+            elif cmd == 'down':
+                d += amount
+            elif cmd == 'up':
+                d -= amount
 
-    return h * d
+        return h * d
 
+    def part2(self):
+        h = 0
+        d = 0
+        a = 0
 
-def part2():
-    h = 0
-    d = 0
-    a = 0
+        for parts in self.input:
+            cmd = parts[0]
+            amount = int(parts[1])
 
-    for line in get_lines(2):
-        parts = line.split(' ')
-        cmd = parts[0]
-        amount = int(parts[1])
+            if cmd == 'forward':
+                h += amount
+                d += a * amount
+            elif cmd == 'down':
+                a += amount
+            elif cmd == 'up':
+                a -= amount
 
-        if cmd == 'forward':
-            h += amount
-            d += a * amount
-        elif cmd == 'down':
-            a += amount
-        elif cmd == 'up':
-            a -= amount
-
-    return h * d
+        return h * d
 
 
-print(f'Part 1: {part1()}')
-print(f'Part 2: {part2()}')
+Day(2, lambda l: l.split(' '))
