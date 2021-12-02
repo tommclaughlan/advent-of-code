@@ -1,7 +1,7 @@
 import urllib.request
 
 
-def get_lines(day, cast=str):
+def get_lines(day, cast=lambda b: b.decode('UTF-8')):
     for line in get_input(day):
         yield cast(line)
 

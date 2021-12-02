@@ -1,4 +1,4 @@
-from util.io import get_lines, get_input
+from util.io import get_lines
 
 
 def part1():
