@@ -16,20 +16,18 @@ def most_common_bits(array):
             else:
                 bit_count[i] -= 1
     bit_count.reverse()
-    return bit_count
+    return BitArray(bin="".join('1' if c >= 0 else '0' for c in bit_count))
 
 
 def reduce_list(data, bit, most):
     bit_count = most_common_bits(data)
-    bitmask = str((not most) ^ (1 if bit_count[bit] >= 0 else 0))
+    bitmask = str((not most) ^ (int(bit_count.bin[bit])))
     return [d for d in data if d.bin[bit] != bitmask]
 
 
 class Day(Runner):
     def part1(self):
-        bit_count = most_common_bits(self.input)
-
-        gamma = BitArray(bin="".join('1' if c > 0 else '0' for c in bit_count))
+        gamma = most_common_bits(self.input)
         epsilon = ~gamma
         return gamma.uint * epsilon.uint
 
