@@ -5,12 +5,13 @@ class Runner:
     def __init__(self, day, cast=str):
         self.cast = cast
         self.day = day
+        self.data = get_input(self.day)
 
         self.run()
 
     def __getattr__(self, item):
         if item == 'input':
-            return (self.cast(line) for line in get_input(self.day))
+            return (self.cast(line) for line in self.data)
         raise AttributeError
 
     def part1(self):
