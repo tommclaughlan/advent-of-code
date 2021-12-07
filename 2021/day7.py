@@ -9,35 +9,31 @@ def triangular_number(x):
 class Day(Runner):
     def part1(self):
         pos = 0
-        direction = -1
         crabs = next(self.input)
         last_sum = np.sum(crabs)
 
-        while direction < 0:
+        while True:
             pos += 1
             new_sum = np.sum(np.abs(crabs - pos))
             if new_sum < last_sum:
                 last_sum = new_sum
-                direction = -1
             else:
-                direction = 1
+                break
 
         return last_sum
 
     def part2(self):
         pos = 0
-        direction = -1
         crabs = next(self.input)
         last_sum = np.sum(triangular_number(crabs))
 
-        while direction < 0:
+        while True:
             pos += 1
             new_sum = np.sum(triangular_number(np.abs(crabs - pos)))
             if new_sum < last_sum:
                 last_sum = new_sum
-                direction = -1
             else:
-                direction = 1
+                break
 
         return int(last_sum)
 
