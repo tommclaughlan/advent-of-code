@@ -36,7 +36,7 @@ class Day(Runner):
                 fill_grid = False
                 continue
             if fill_grid:
-                coords = [int(c) for c in line.strip().split(',')]
+                coords = [int(c) for c in line.split(',')]
                 grid[coords[1], coords[0]] = 1
             else:
                 fold = line.split('fold along ')[1].split('=')

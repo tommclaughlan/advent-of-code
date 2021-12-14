@@ -2,7 +2,7 @@ from util.io import get_input
 
 
 class Runner:
-    def __init__(self, day, cast=str):
+    def __init__(self, day, cast=lambda x: x.strip()):
         self.cast = cast
         self.day = day
         self.data = get_input(self.day)

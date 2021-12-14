@@ -29,7 +29,7 @@ def time_series(grid, steps):
 
 class Day(Runner):
     def get_grid(self):
-        rows = [[int(c) for c in line.strip()] for line in self.input]
+        rows = [[int(c) for c in line] for line in self.input]
         return np.row_stack([np.array(r) for r in rows])
 
     def part1(self):

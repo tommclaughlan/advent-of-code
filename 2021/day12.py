@@ -58,7 +58,7 @@ class Day(Runner):
     def part1(self):
         connections = []
         for c in self.input:
-            connections.append(c.strip().split('-'))
+            connections.append(c.split('-'))
 
         paths = get_paths(connections)
 
@@ -67,7 +67,7 @@ class Day(Runner):
     def part2(self):
         connections = []
         for c in self.input:
-            connections.append(c.strip().split('-'))
+            connections.append(c.split('-'))
 
         paths = get_paths_part2(connections)
 

@@ -74,4 +74,4 @@ class Day(Runner):
                     return n * card.get_score()
 
 
-Day(4, lambda l: l.strip())
+Day(4)

@@ -30,7 +30,7 @@ class Day(Runner):
         score = 0
         for line in self.input:
             stack = []
-            for char in line.strip():
+            for char in line:
                 if is_close(char) and not is_match(stack.pop(), char):
                     score += get_points(char)
                     break
@@ -45,7 +45,7 @@ class Day(Runner):
             stack = []
 
             incomplete = True
-            for char in line.strip():
+            for char in line:
                 if is_close(char) and not is_match(stack.pop(), char):
                     incomplete = False
                     break
