@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use aoc_2022_common::read_file;
+use aoc_2022_common::read_lines;
 
 fn main() {
     let part1_result = part1("../inputs/day2.txt");
@@ -11,15 +11,12 @@ fn main() {
 
 fn part1(filename: &str) -> i32 {
     let mut score = 0;
-    if let Ok(lines) = read_file(filename) {
-        for line in lines {
-            if let Ok(value) = line {
-                let parts: Vec<&str> = value.split(" ").collect();
-                let opponent = parts[0];
-                let to_play = parts[1];
-                score += shape_score(to_play) + get_score(opponent, to_play);
-            }
-        }
+
+    for line in read_lines(filename) {
+        let parts: Vec<&str> = line.split(" ").collect();
+        let opponent = parts[0];
+        let to_play = parts[1];
+        score += shape_score(to_play) + get_score(opponent, to_play);
     }
 
     return score;
@@ -27,16 +24,13 @@ fn part1(filename: &str) -> i32 {
 
 fn part2(filename: &str) -> i32 {
     let mut score = 0;
-    if let Ok(lines) = read_file(filename) {
-        for line in lines {
-            if let Ok(value) = line {
-                let parts: Vec<&str> = value.split(" ").collect();
-                let opponent = parts[0];
-                let outcome = parts[1];
-                let to_play = get_shape(opponent, outcome);
-                score += shape_score(to_play) + outcome_score(outcome);
-            }
-        }
+
+    for line in read_lines(filename) {
+        let parts: Vec<&str> = line.split(" ").collect();
+        let opponent = parts[0];
+        let outcome = parts[1];
+        let to_play = get_shape(opponent, outcome);
+        score += shape_score(to_play) + outcome_score(outcome);
     }
 
     return score;
@@ -122,5 +116,15 @@ mod tests {
     #[test]
     fn test_part2() {
         assert_eq!(part2("../inputs/test_input/day2.txt"), 12);
+    }
+
+    #[test]
+    fn answer_part1() {
+        assert_eq!(part1("../inputs/day2.txt"), 13484);
+    }
+
+    #[test]
+    fn answer_part2() {
+        assert_eq!(part2("../inputs/day2.txt"), 13433);
     }
 }
