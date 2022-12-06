@@ -26,14 +26,8 @@ fn part1(filename: &str) -> String {
             stacks[j].push(item);
         }
     }
-    
-    let mut result = String::new();
 
-    for mut stack in stacks {
-        result.push_str(stack.pop().unwrap().to_string().as_str());
-    }
-    
-    return result;
+    return stacks.iter().map(|s| s.last().unwrap()).collect();
 }
 
 fn part2(filename: &str) -> String {
@@ -53,19 +47,12 @@ fn part2(filename: &str) -> String {
             let i = from as usize;
             target = to as usize;
             let item = stacks[i].pop().unwrap();
-            intermediate_stack.push(item);
+            intermediate_stack.insert(0, item);
         }
-        intermediate_stack.iter().rev().for_each(|thing| stacks[target].push(*thing));
-        intermediate_stack.clear();
+        intermediate_stack.iter().for_each(|thing| stacks[target].push(*thing));
     }
 
-    let mut result = String::new();
-
-    for mut stack in stacks {
-        result.push_str(stack.pop().unwrap().to_string().as_str());
-    }
-
-    return result;
+    return stacks.iter().map(|s| s.last().unwrap()).collect();
 }
 
 fn read_initial_state(initial: Vec<&String>) -> Vec<Vec<char>> {
@@ -75,12 +62,13 @@ fn read_initial_state(initial: Vec<&String>) -> Vec<Vec<char>> {
     for _ in 0..n_stacks {
         stacks.push(Vec::new());
     }
-    
+
     for line in initial {
-        if line.chars().nth(1).unwrap() != '1' {
+        let bytes = line.as_bytes();
+        if bytes[1] as char != '1' {
             for _i in 0..n_stacks {
                 let index: usize = _i as usize;
-                let item = line.chars().nth(index*4 + 1).unwrap();
+                let item = bytes[index * 4 + 1] as char;
                 if item != ' ' {
                     stacks[index].insert(0, item);
                 }
