@@ -2,9 +2,9 @@ from util.io import get_input
 
 
 class Runner:
-    def __init__(self, day, cast=lambda x: x.strip()):
+    def __init__(self, cast=lambda x: x.strip()):
         self.cast = cast
-        self.day = day
+        self.day = str(self.__class__).split("Day")[1].strip("'>")
         self.data = get_input(self.day)
 
         self.run()

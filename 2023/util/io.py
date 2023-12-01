@@ -3,7 +3,7 @@ import urllib.request
 
 def get_input(day):
     cookie = read_cookie()
-    url = f'https://adventofcode.com/2021/day/{day}/input'
+    url = f'https://adventofcode.com/2023/day/{day}/input'
     request = urllib.request.Request(url)
     request.add_header('Cookie', f'session={cookie}')
     with urllib.request.urlopen(request) as response:
