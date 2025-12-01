@@ -30,7 +30,7 @@ func loadInput(day string) string {
 		return string(content)
 	}
 
-	req, _ := http.NewRequest("GET", "https://adventofcode.com/2024/day/"+day+"/input", nil)
+	req, _ := http.NewRequest("GET", "https://adventofcode.com/2025/day/"+day+"/input", nil)
 
 	sessionToken := loadSession()
 
