@@ -17,7 +17,7 @@ func main() {
 	day := types.Day{
 		Part1: part1,
 		Part2: part2,
-		Day:   "${DAY}",
+		Day:   "${AOCDAY}",
 	}
 
 	runner.RunDay(day)

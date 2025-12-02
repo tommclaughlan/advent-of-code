@@ -42,32 +42,37 @@ func part2(input string) string {
 	for _, command := range commands {
 		value, _ := strconv.Atoi(command[1])
 
-		direction := 1
+		fullTurns := value / 100
+		partTurn := value % 100
 
-		if command[0] == "L" {
-			direction = -1
+		start := point
+
+		total += fullTurns
+
+		if command[0] == "R" {
+			point += partTurn
 		}
-		newPoint, crossings := turnAndCountZeroCrossings(point, direction, value)
-		point = newPoint
-		total += crossings
+		if command[0] == "L" {
+			point -= partTurn
+		}
+		if point == 0 {
+			total += 1
+		}
+		if point >= 100 {
+			if start != 0 {
+				total += 1
+			}
+			point -= 100
+		}
+		if point < 0 {
+			if start != 0 {
+				total += 1
+			}
+			point += 100
+		}
 	}
 
 	return strconv.Itoa(total)
-}
-
-func turnAndCountZeroCrossings(point int, direction int, amount int) (int, int) {
-	crossings := 0
-
-	for amount > 0 {
-		point += direction
-		amount -= 1
-
-		if point%100 == 0 {
-			crossings += 1
-		}
-	}
-
-	return point, crossings
 }
 
 func parseLines(lines []string) [][]string {
