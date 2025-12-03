@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"time"
 )
 
 func loadSession() string {
@@ -59,6 +60,7 @@ func loadInput(day string) string {
 func RunDay(day types.Day) {
 	input := loadInput(day.Day)
 
-	fmt.Printf("Part 1: %s\n", day.Part1(input))
-	fmt.Printf("Part 2: %s\n", day.Part2(input))
+	start := time.Now()
+	fmt.Printf("Part 1: %s took %d ms\n", day.Part1(input), time.Since(start).Milliseconds())
+	fmt.Printf("Part 2: %s took %d ms\n", day.Part2(input), time.Since(start).Milliseconds())
 }
