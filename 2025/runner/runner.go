@@ -62,5 +62,7 @@ func RunDay(day types.Day) {
 
 	start := time.Now()
 	fmt.Printf("Part 1: %s took %d μs\n", day.Part1(input), time.Since(start).Microseconds())
+
+	start = time.Now()
 	fmt.Printf("Part 2: %s took %d μs\n", day.Part2(input), time.Since(start).Microseconds())
 }
